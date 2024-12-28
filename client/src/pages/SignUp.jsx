@@ -1,5 +1,6 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
+import { set } from 'mongoose';
 
 export default function SignUp() {
   const [formData, setFormData] = useState({})
@@ -16,8 +17,9 @@ export default function SignUp() {
   }
 
   const handleSubmit = async (e) => {
+    e.preventDefault();
     try {
-      e.preventDefault();
+      setLoading(true);
     const res = await fetch('/api/auth/signup', {
       method: 'POST',
       headers: {
