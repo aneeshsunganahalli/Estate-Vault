@@ -17,6 +17,9 @@
     "express": "^4.21.2",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.9.2",
-    "nodemon": "^3.1.9"
+    "nodemon": "^3.1.9",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "redux-persist": "^6.0.0"
   }
 }
