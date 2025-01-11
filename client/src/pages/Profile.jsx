@@ -132,9 +132,9 @@ export default function Profile() {
     }
   }
 
-  const handleListingDelete = async (lisitingId) => {
+  const handleListingDelete = async (listingId) => {
     try {
-      const res = await fetch(`/api/listing/delete/${lisitingId}`, {
+      const res = await fetch(`/api/listing/delete/${listingId}`, {
         method: 'DELETE',
       });
       const data = await res.json();
