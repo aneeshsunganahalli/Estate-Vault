@@ -50,7 +50,10 @@ export default function CreateListing() {
         setImageUploadError('Image upload failed (2MB max per image)')
       })
     }
-    else {
+    else if (files.length === 0) {
+      setImageUploadError('Upload atleast one image')
+      setUploading(false)
+    } else {
       setImageUploadError('Can only upload 6 images per listing')
       setUploading(false)
     }
@@ -164,7 +167,7 @@ export default function CreateListing() {
           <input type='text' 
             placeholder='Address' 
             className='border p-3 rounded-lg' 
-            id='name' 
+            id='address' 
             maxLength={62} 
             minLength={10} 
             required
