@@ -236,7 +236,7 @@ export default function UpdateListing() {
             </div>
             {formData.offer && (
             <div className='flex items-center gap-2'> 
-              <input type='number' id='discountPrice' min={1} max={10} required
+              <input type='number' id='discountPrice' min={0} max={1000000} required
                className='p-3 border rounded-lg border-gray-300' onChange={handleChange} value={formData.discountedPrice}/>
               <div className='flex flex-col items-center'>
                 <p>Discounted Price</p>

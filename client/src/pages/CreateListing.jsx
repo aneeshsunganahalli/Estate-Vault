@@ -6,7 +6,8 @@ import {useSelector} from 'react-redux'
 import {useNavigate} from 'react-router-dom'
 
 export default function CreateListing() {
-  const {currentUser} = useSelector(state => state.user)
+  const { currentUser } = useSelector((state) => state.user)
+  const navigate = useNavigate()
   const [files, setFiles] = React.useState([])
   const [uploading, setUploading] = useState(false)
   const [error, setError] = useState(false)
@@ -27,7 +28,7 @@ export default function CreateListing() {
   })
   const [imageUploadError, setImageUploadError] = useState(false)
   console.log(formData)
-  const navigate = useNavigate()
+  
   
   const handleImageSubmit = (e) => {
     if (files.length > 0 && files.length + formData.imageUrls.length < 7){
@@ -92,7 +93,7 @@ export default function CreateListing() {
     if(e.target.id === 'sale' || e.target.id === 'rent'){
       setFormData({
         ...formData,
-        type: e.target.id
+        type: e.target.id,
       })
     }
 
@@ -115,7 +116,8 @@ export default function CreateListing() {
     e.preventDefault();
     try {
       if (formData.imageUrls.length < 1) return setError('You must atleast upload one image')
-      if (+formData.regularPrice < +formData.discountedPrice) return setError('Discount price must be lower than regular price')
+      if (+formData.regularPrice < +formData.discountedPrice) 
+        return setError('Discount price must be lower than regular price')
       setLoading(true)
       setError(false)
       const res = await fetch('/api/listing/create', {
@@ -126,10 +128,11 @@ export default function CreateListing() {
         body: JSON.stringify({
           ...formData,
           userRef: currentUser._id,
-        })
+        }),
       })
 
       const data = await res.json();
+      console.log(data)
       setLoading(false)
       if(data.success === false)
         setError(data.message)
@@ -222,7 +225,7 @@ export default function CreateListing() {
             </div>
             {formData.offer && (
             <div className='flex items-center gap-2'> 
-              <input type='number' id='discountPrice' min={1} max={10} required
+              <input type='number' id='discountedPrice' min={0} max={100000} required
                className='p-3 border rounded-lg border-gray-300' onChange={handleChange} value={formData.discountedPrice}/>
               <div className='flex flex-col items-center'>
                 <p>Discounted Price</p>
