@@ -21,7 +21,7 @@ export default function CreateListing() {
     bedrooms: 1,
     bathrooms: 1,
     regularPrice: 50,
-    discountedPrice: 0,
+    discountPrice: 0,
     offer: false,
     parking: false,
     furnished: false,
@@ -116,7 +116,7 @@ export default function CreateListing() {
     e.preventDefault();
     try {
       if (formData.imageUrls.length < 1) return setError('You must atleast upload one image')
-      if (+formData.regularPrice < +formData.discountedPrice) 
+      if (+formData.regularPrice < +formData.discountPrice) 
         return setError('Discount price must be lower than regular price')
       setLoading(true)
       setError(false)
@@ -134,6 +134,7 @@ export default function CreateListing() {
       const data = await res.json();
       console.log(data)
       setLoading(false)
+
       if(data.success === false)
         setError(data.message)
       navigate(`/listing/${data._id}`)
@@ -225,8 +226,8 @@ export default function CreateListing() {
             </div>
             {formData.offer && (
             <div className='flex items-center gap-2'> 
-              <input type='number' id='discountedPrice' min={0} max={100000} required
-               className='p-3 border rounded-lg border-gray-300' onChange={handleChange} value={formData.discountedPrice}/>
+              <input type='number' id='discountPrice' min={0} max={100000} required
+               className='p-3 border rounded-lg border-gray-300' onChange={handleChange} value={formData.discountPrice}/>
               <div className='flex flex-col items-center'>
                 <p>Discounted Price</p>
                 <span className='text-xs'>($ / month)</span>
