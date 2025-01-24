@@ -13,7 +13,11 @@ import Search from './pages/Search';
 
 
 export default function App() {
+  const isNotDarkMode = useSelector(state => state.darkMode)
+  console.log(isNotDarkMode)
+
   return (
+    <div className={`${isNotDarkMode? 'bg-[#f1f5f1]' : "bg-[#0b0f0b]" } min-h-screen`}>
     <BrowserRouter>
       <Header />
       <Routes>
@@ -32,5 +36,6 @@ export default function App() {
         <Route path="/about" element={<About />} />
       </Routes>
     </BrowserRouter>
+    </div>
   )
 }

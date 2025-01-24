@@ -5,11 +5,11 @@ import SwiperCore from 'swiper'
 import { Navigation } from 'swiper/modules'
 import 'swiper/css/bundle'
 import ListingItem from '../components/ListingItem'
-
+import { useSelector } from 'react-redux'
 
 
 export default function Home() {
-
+  const isNotDarkMode = useSelector(state => state.darkMode)
   const [offerListings,setOfferListings] = useState([])
   const [saleListings, setSaleListings] = useState([])
   const [rentListings, setRentListings] = useState([])
@@ -54,15 +54,15 @@ export default function Home() {
   return (
     <div >
       <div className='flex flex-col gap-6 p-28 px-3 max-w-6xl mx-auto'>
-        <h1 className='text-slate-700 font-bold text-3xl lg:text-6xl'>
-          Find your next <span className='text-slate-500'>perfect</span> <br/>place with ease 
+        <h1 className={`${isNotDarkMode? 'text-slate-700' : 'text-[#abb8c9]' } font-bold text-3xl lg:text-6xl`}>
+          Find your next <span className={`${isNotDarkMode? 'text-slate-500': 'text-[#758499]'}`}>perfect</span> <br/>place with ease 
         </h1>
-        <div className='text-gray-400 text-xs sm:text-sm'>
+        <div className={`${isNotDarkMode? 'text-gray-400' : 'text-[#505762]'} text-xs sm:text-sm`}>
           Estate Vault is the best place to find your next perfect place to live.
           <br />
           We have a wide range of properties for you to choose from.
         </div>
-        <Link to={'/search'} className='text-xs sm:text-sm text-blue-800 font-bold hover:underline'>
+        <Link to={'/search'} className={`text-xs sm:text-sm ${isNotDarkMode? 'text-blue-800': 'text-[#5876da]'} font-bold hover:underline`}>
           Let's get started...
         </Link>
       </div>
@@ -82,8 +82,8 @@ export default function Home() {
             offerListings && offerListings.length > 0 && (
               <div>
                 <div className='my-3'>
-                  <h2 className='text-2xl font-semibold text-slate-600'>Recent offers</h2>
-                  <Link className='text-sm text-blue-800 hover:underline' to={'/search?offer=true'}>
+                  <h2 className={`text-2xl font-semibold ${isNotDarkMode? 'text-slate-600': 'text-[#97a3b5]'}`}>Recent offers</h2>
+                  <Link className={`text-sm ${isNotDarkMode? 'text-blue-800': 'text-[#5876da]'} hover:underline`} to={'/search?offer=true'}>
                     Show more offers
                   </Link>
                 </div>
@@ -104,8 +104,8 @@ export default function Home() {
             rentListings && rentListings.length > 0 && (
               <div>
                 <div className='my-3'>
-                  <h2 className='text-2xl font-semibold text-slate-600'>Recent places for rent</h2>
-                  <Link className='text-sm text-blue-800 hover:underline' to={'/search?type=rent'}>
+                  <h2 className={`text-2xl font-semibold ${isNotDarkMode? 'text-slate-600': 'text-[#97a3b5]'}`}>Recent places for rent</h2>
+                  <Link className={`text-sm ${isNotDarkMode? 'text-blue-800': 'text-[#5876da]'} hover:underline`} to={'/search?type=rent'}>
                     Show more offers
                   </Link>
                 </div>
@@ -126,8 +126,8 @@ export default function Home() {
             saleListings && saleListings.length > 0 && (
               <div>
                 <div className='my-3'>
-                  <h2 className='text-2xl font-semibold text-slate-600'>Recent places for sale</h2>
-                  <Link className='text-sm text-blue-800 hover:underline' to={'/search?type=sale'}>
+                  <h2 className={`text-2xl font-semibold ${isNotDarkMode? 'text-slate-600': 'text-[#97a3b5]'}`}>Recent places for sale</h2>
+                  <Link className={`text-sm ${isNotDarkMode? 'text-blue-800': 'text-[#5876da]'} hover:underline`} to={'/search?type=sale'}>
                     Show more offers
                   </Link>
                 </div>

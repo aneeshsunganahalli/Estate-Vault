@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react';
 
 export default function Header() {
   const {currentUser} = useSelector(state => state.user);
+  const isNotDarkMode = useSelector(state => state.darkMode);
   const [searchTerm, setSearchTerm] = useState('')
   const navigate = useNavigate();
 
@@ -26,13 +27,13 @@ export default function Header() {
   }, [window.location.search])
 
   return (
-    <header className='bg-slate-200 shadow-md'>
-      <div className='flex justify-between items-center max-w-6xl mx-auto p-3'>
+    <header className={`${isNotDarkMode? 'bg-slate-200' : 'bg-[#10161e]'} shadow-md`}>
+      <div className='flex justify-between items-center max-w-6xl mx-auto p-3 py-5'>
 
         <Link to="/">
             <h1 className='font-bold text-sm sm:text-xl flex flex-wrap'>
-              <span className='text-slate-500 logo text-2xl font-extrabold'>Estate</span>
-              <span className='text-slate-700 logo text-2xl font-extrabold'>Vault</span>
+              <span className={`${isNotDarkMode? 'text-slate-500': 'text-[#758499]'} logo text-2xl font-extrabold`}>Estate</span>
+              <span className={`${isNotDarkMode? 'text-slate-700' : 'text-[#abb8c9]' } logo text-2xl font-extrabold`}>Vault</span>
             </h1>
         </Link>
 
@@ -52,13 +53,13 @@ export default function Header() {
         <ul className='flex gap-4'>
 
           <Link to='/'>
-            <li className='hidden sm:inline hover:underline text-slate-700 cursor-pointer'>
+            <li className={`hidden sm:inline hover:underline ${isNotDarkMode? 'text-slate-700' : 'text-[#abb8c9]' } cursor-pointer`}>
               Home
             </li>
           </Link>
 
           <Link to='/about'>
-            <li className='hidden sm:inline hover:underline text-slate-700 cursor-pointer'>
+            <li className={`hidden sm:inline hover:underline ${isNotDarkMode? 'text-slate-700' : 'text-[#abb8c9]' } cursor-pointer`}>
               About
               </li>
           </Link>

@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import ListingItem from '../components/ListingItem';
+import { useSelector } from 'react-redux';
 
 export default function Search() {
+  const isNotDarkMode = useSelector(state => state.darkMode)
   const navigate = useNavigate()
   const [sidebardata, setSidebardata] = useState({
     searchTerm: '',
@@ -121,7 +123,7 @@ export default function Search() {
 
 
   return (
-    <div className='flex flex-col md:flex-row'>
+    <div className={`${isNotDarkMode? '' : 'text-white'} flex flex-col md:flex-row`}>
       <div className='p-7 border-b-2 md:border-r-2 md:min-h-screen'>
         <form onSubmit={handleSubmit} className='flex flex-col gap-8'>
           <div className='flex items-center gap-2'>
@@ -174,11 +176,11 @@ export default function Search() {
             </div>
           </div>
 
-          <div className='flex items-center gap-2'>
+          <div className='  flex items-center gap-2'>
             <label className='font-semibold'>
               Sort:
             </label>
-            <select onChange={handleChange} defaultValue={'created_at_desc'} id='sort_order' className='border rounded-lg p-3'>
+            <select onChange={handleChange} defaultValue={'created_at_desc'} id='sort_order' className=' text-black border rounded-lg p-3'>
               <option value='regularPrice_desc'>Price high to low</option>
               <option  value='regularPrice_asc'>Price low to high</option>
               <option  value='createdAt_desc'>Latest</option>
@@ -192,7 +194,7 @@ export default function Search() {
       </div>
 
       <div className=''>
-        <h1 className='font-semibold text-3xl border-b p-3 text-slate-700 mt-6'>
+        <h1 className={`font-semibold text-3xl border-b p-3 ${isNotDarkMode? 'text-slate-700' : 'text-[#abb8c9]' } mt-6`}>
           Listing results: 
         </h1>
         <div className='p-7 flex flex-wrap gap-4'>
