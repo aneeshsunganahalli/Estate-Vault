@@ -2,6 +2,7 @@ import {FaSearch} from 'react-icons/fa';
 import { Link, useNavigate } from 'react-router-dom';
 import { useSelector} from 'react-redux';
 import { useEffect, useState } from 'react';
+import DarkModeToggle from './DarkModeToggle';
 
 
 export default function Header() {
@@ -73,6 +74,8 @@ export default function Header() {
               </li>
             )}
           </Link>
+
+            <DarkModeToggle />
 
         </ul>
       </div>
